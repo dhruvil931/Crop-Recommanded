@@ -15,13 +15,13 @@ const Recommend = () => {
   useEffect(() => {
     const token = localStorage.getItem("token");
     const storedUser = localStorage.getItem("user");
-    // if (!token) {
-    //   navigate("/login");
-    // } else {
-    //   if (storedUser) {
-    //     setUser(JSON.parse(storedUser));
-    //   }
-    // }
+    if (!token) {
+      navigate("/login");
+    } else {
+      if (storedUser) {
+        setUser(JSON.parse(storedUser));
+      }
+    }
   }, [navigate]);
 
   const handleLogout = () => {

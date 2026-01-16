@@ -24,6 +24,7 @@ const Login = () => {
         "http://localhost:8080/api/auth/login",
         formData
       );
+
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("user", JSON.stringify(response.data.user));
       // Dispatch event to update Navbar immediately

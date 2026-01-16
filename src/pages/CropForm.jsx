@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { getRecommendation } from "../services/api";
+import axios from "axios";
 
 const CropForm = ({ onResult, onLoading, onError }) => {
   const [formData, setFormData] = useState({
