@@ -1,6 +1,97 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
+import statesData from "../data/states.json";
+
+const SearchableDropdown = ({
+  options,
+  value,
+  onChange,
+  placeholder,
+  disabled = false,
+}) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const wrapperRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const filteredOptions = options
+    ? options.filter((option) =>
+        option.toLowerCase().includes(searchTerm.toLowerCase()),
+      )
+    : [];
+
+  const handleSelect = (option) => {
+    onChange(option);
+    setSearchTerm("");
+    setIsOpen(false);
+  };
+
+  return (
+    <div className="relative" ref={wrapperRef}>
+      <div
+        className={`w-full px-5 py-4 rounded-2xl bg-gray-50 border border-gray-200 text-gray-900 cursor-pointer flex justify-between items-center ${disabled ? "opacity-50 cursor-not-allowed" : "hover:bg-gray-100"}`}
+        onClick={() => !disabled && setIsOpen(!isOpen)}
+      >
+        <span className={value ? "text-gray-900" : "text-gray-400"}>
+          {value || placeholder}
+        </span>
+        <svg
+          className={`w-5 h-5 transition-transform ${isOpen ? "rotate-180" : ""}`}
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M19 9l-7 7-7-7"
+          />
+        </svg>
+      </div>
+
+      {isOpen && (
+        <div className="absolute z-50 w-full mt-2 bg-white rounded-xl shadow-lg border border-gray-100 max-h-60 overflow-y-auto">
+          <div className="p-2 sticky top-0 bg-white border-b border-gray-100">
+            <input
+              type="text"
+              className="w-full p-2 bg-gray-50 rounded-lg border border-gray-200 outline-none focus:border-[#2e7d32]"
+              placeholder="Search..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              autoFocus
+            />
+          </div>
+          {filteredOptions.length > 0 ? (
+            filteredOptions.map((option, index) => (
+              <div
+                key={index}
+                className="px-4 py-3 hover:bg-gray-50 cursor-pointer transition-colors"
+                onClick={() => handleSelect(option)}
+              >
+                {option}
+              </div>
+            ))
+          ) : (
+            <div className="px-4 py-3 text-gray-400 text-center">
+              No results found
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+};
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -8,16 +99,26 @@ const Signup = () => {
     email: "",
     password: "",
     confirmPassword: "",
-    location: "",
+    state: "",
     phoneNumber: "",
   });
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
+  // Get list of states
+  const states = statesData.states;
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleStateChange = (selectedState) => {
+    setFormData({
+      ...formData,
+      state: selectedState,
     });
   };
 
@@ -28,12 +129,22 @@ const Signup = () => {
       return;
     }
 
+    if (!/^[6-9]\d{9}$/.test(formData.phoneNumber)) {
+      setError("Enter a valid 10-digit Indian phone number");
+      return;
+    }
+
+    if (!formData.state) {
+      setError("State is required");
+      return;
+    }
+
     try {
       await axios.post("http://localhost:8080/api/auth/signup", {
         name: formData.name,
         email: formData.email,
         password: formData.password,
-        location: formData.location,
+        state: formData.state,
         phoneNumber: formData.phoneNumber,
       });
       navigate("/login");
@@ -152,30 +263,28 @@ const Signup = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2 ml-1">
-                  Phone Number{" "}
-                  <span className="text-gray-400 font-normal">(Optional)</span>
+                  Phone Number
                 </label>
                 <input
                   type="tel"
                   name="phoneNumber"
                   value={formData.phoneNumber}
                   onChange={handleChange}
+                  required
                   placeholder="+91 9876543210"
                   className="w-full px-5 py-4 rounded-2xl bg-gray-50 border border-gray-200 text-gray-900 focus:bg-white focus:border-[#2e7d32] focus:ring-4 focus:ring-[#2e7d32]/10 transition-all duration-300 outline-none"
                 />
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2 ml-1">
-                  Location{" "}
-                  <span className="text-gray-400 font-normal">(Optional)</span>
+                  State
                 </label>
-                <input
-                  type="text"
-                  name="location"
-                  value={formData.location}
-                  onChange={handleChange}
-                  placeholder="State / District"
-                  className="w-full px-5 py-4 rounded-2xl bg-gray-50 border border-gray-200 text-gray-900 focus:bg-white focus:border-[#2e7d32] focus:ring-4 focus:ring-[#2e7d32]/10 transition-all duration-300 outline-none"
+                <SearchableDropdown
+                  options={states}
+                  value={formData.state}
+                  onChange={handleStateChange}
+                  placeholder="Select State"
+                  required
                 />
               </div>
             </div>
@@ -213,7 +322,7 @@ const Signup = () => {
 
             <button
               type="submit"
-              className="w-full py-4 bg-[#2e7d32] hover:bg-[#1b5e20] text-white rounded-2xl font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+              className="w-full py-4 bg-[#2e7d32] hover:bg-[#1b5e20] text-white rounded-2xl font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0"
             >
               Sign Up
             </button>
@@ -231,7 +340,7 @@ const Signup = () => {
             <button
               type="button"
               onClick={() => console.log("Google login clicked")}
-              className="flex items-center justify-center gap-3 p-3 border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors duration-300 group cursor-pointer"
+              className="flex items-center justify-center gap-3 p-3 border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors duration-300 group"
             >
               <svg
                 className="w-5 h-5 group-hover:scale-110 transition-transform"
@@ -259,7 +368,7 @@ const Signup = () => {
             <button
               type="button"
               onClick={() => console.log("Facebook login clicked")}
-              className="flex items-center justify-center gap-3 p-3 border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors duration-300 group cursor-pointer"
+              className="flex items-center justify-center gap-3 p-3 border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors duration-300 group"
             >
               <svg
                 className="w-5 h-5 text-[#1877F2] group-hover:scale-110 transition-transform"

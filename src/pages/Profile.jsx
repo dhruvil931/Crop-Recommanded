@@ -105,7 +105,7 @@ const Profile = () => {
                     Location
                   </label>
                   <p className="text-lg font-semibold text-gray-900 flex items-center gap-2">
-                    {user.location || (
+                    {user.state || (
                       <span className="text-gray-400 italic">Not provided</span>
                     )}
                   </p>

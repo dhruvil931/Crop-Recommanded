@@ -22,11 +22,12 @@ const Login = () => {
     try {
       const response = await axios.post(
         "http://localhost:8080/api/auth/login",
-        formData
+        formData,
       );
 
       localStorage.setItem("token", response.data.token);
-      localStorage.setItem("user", JSON.stringify(response.data.user));
+      localStorage.setItem("user", JSON.stringify(user));
+
       // Dispatch event to update Navbar immediately
       window.dispatchEvent(new Event("auth-change"));
       navigate("/");
