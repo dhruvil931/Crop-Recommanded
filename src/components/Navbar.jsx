@@ -7,16 +7,39 @@ const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const checkLoginStatus = () => {
-    // Robust check for token existence
+  const checkLoginStatus = async () => {
     const token = localStorage.getItem("token");
-    setIsLoggedIn(!!token);
+
+    if (token) {
+      try {
+        // Verify token and get user details from backend
+        const response = await fetch("http://localhost:8080/api/auth/me", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (response.ok) {
+          setIsLoggedIn(true);
+          // Optionally store user in state if needed for profile name display
+        } else {
+          // Token invalid
+          localStorage.removeItem("token");
+          setIsLoggedIn(false);
+        }
+      } catch (error) {
+        console.error("Auth check failed", error);
+        setIsLoggedIn(false);
+      }
+    } else {
+      setIsLoggedIn(false);
+    }
   };
 
   useEffect(() => {
     checkLoginStatus();
 
-    // Listen for custom auth events and storage changes (cross-tab support)
+    // Listen for custom auth events and storage changes
     const handleAuthChange = () => checkLoginStatus();
 
     window.addEventListener("auth-change", handleAuthChange);
@@ -181,9 +204,7 @@ const Navbar = () => {
 
       {/* Mobile Menu Dropdown */}
       <div
-        className={`md:hidden transition-all duration-300 ease-in-out overflow-hidden box-border bg-white ${
-          isOpen ? "max-h-80 opacity-100" : "max-h-0 opacity-0"
-        }`}
+        className={`md:hidden transition-all duration-300 ease-in-out overflow-hidden box-border bg-white ${isOpen ? "max-h-80 opacity-100" : "max-h-0 opacity-0"}`}
         style={{ borderTop: isOpen ? "1px solid #e5e7eb" : "none" }}
       >
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 shadow-lg box-border">

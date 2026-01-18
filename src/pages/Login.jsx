@@ -26,7 +26,6 @@ const Login = () => {
       );
 
       localStorage.setItem("token", response.data.token);
-      localStorage.setItem("user", JSON.stringify(user));
 
       // Dispatch event to update Navbar immediately
       window.dispatchEvent(new Event("auth-change"));
