@@ -5,7 +5,7 @@ import react from "@vitejs/plugin-react";
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [tailwindcss(), react()],
-  // server: {
-  //   allowedHosts: ["subparalytic-horrendously-bernadette.ngrok-free.dev"],
-  // },
+  server: {
+    allowedHosts: ["subparalytic-horrendously-bernadette.ngrok-free.dev"],
+  },
 });

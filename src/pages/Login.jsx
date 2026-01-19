@@ -24,10 +24,11 @@ const Login = () => {
         "http://localhost:8080/api/auth/login",
         formData,
       );
-
       localStorage.setItem("token", response.data.token);
+      // localStorage.setItem('user', JSON.stringify(response.data.user)); // No longer storing user
 
       // Dispatch event to update Navbar immediately
+
       window.dispatchEvent(new Event("auth-change"));
       navigate("/");
     } catch (err) {
@@ -64,7 +65,7 @@ const Login = () => {
               "url('https://images.unsplash.com/photo-1625246333195-78d9c38ad449?q=80&w=2070&auto=format&fit=crop')",
           }}
         ></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60"></div>
+        <div className="absolute inset-0 bg-linear-to-b from-black/30 via-transparent to-black/60"></div>
 
         <div className="relative z-10 flex flex-col justify-between p-12 text-white h-full w-full">
           <div className="flex items-center gap-3">
@@ -99,7 +100,7 @@ const Login = () => {
           {error && (
             <div className="bg-red-50 text-red-600 p-4 rounded-xl mb-6 text-sm flex items-center gap-3 border border-red-100">
               <svg
-                className="w-5 h-5 flex-shrink-0"
+                className="w-5 h-5 shrink-0"
                 fill="currentColor"
                 viewBox="0 0 20 20"
               >
@@ -143,36 +144,36 @@ const Login = () => {
                 className="w-full px-5 py-4 rounded-2xl bg-gray-50 border border-gray-200 text-gray-900 focus:bg-white focus:border-[#2e7d32] focus:ring-4 focus:ring-[#2e7d32]/10 transition-all duration-300 outline-none"
               />
               <div className="flex justify-end mt-2">
-                <a
-                  href="#"
+                <Link
+                  to="/forgot-password"
                   className="text-sm font-medium text-[#2e7d32] hover:text-[#1b5e20] transition-colors"
                 >
                   Forgot password?
-                </a>
+                </Link>
               </div>
             </div>
 
             <button
               type="submit"
-              className="w-full py-4 bg-[#2e7d32] hover:bg-[#1b5e20] text-white rounded-2xl font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+              className="w-full py-4 bg-[#2e7d32] hover:bg-[#1b5e20] text-white rounded-2xl font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0"
             >
               Sign In
             </button>
           </form>
 
           <div className="relative my-8 flex items-center">
-            <div className="flex-grow border-t border-gray-200"></div>
-            <span className="flex-shrink-0 mx-4 text-gray-400 text-sm font-medium">
+            <div className="grow border-t border-gray-200"></div>
+            <span className="shrink-0 mx-4 text-gray-400 text-sm font-medium">
               Or continue with
             </span>
-            <div className="flex-grow border-t border-gray-200"></div>
+            <div className="grow border-t border-gray-200"></div>
           </div>
 
           <div className="grid grid-cols-2 gap-4">
             <button
               type="button"
               onClick={() => console.log("Google login clicked")}
-              className="flex items-center justify-center gap-3 p-3 border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors duration-300 group cursor-pointer"
+              className="flex items-center justify-center gap-3 p-3 border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors duration-300 group"
             >
               <svg
                 className="w-5 h-5 group-hover:scale-110 transition-transform"
@@ -200,7 +201,7 @@ const Login = () => {
             <button
               type="button"
               onClick={() => console.log("Facebook login clicked")}
-              className="flex items-center justify-center gap-3 p-3 border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors duration-300 group cursor-pointer"
+              className="flex items-center justify-center gap-3 p-3 border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors duration-300 group"
             >
               <svg
                 className="w-5 h-5 text-[#1877F2] group-hover:scale-110 transition-transform"

@@ -32,10 +32,10 @@ const CropForm = ({ onResult, onLoading, onError }) => {
       newErrors.K = "Valid Potassium content is required";
     if (
       !formData.temperature ||
-      formData.temperature < -10 ||
+      formData.temperature < 0 ||
       formData.temperature > 60
     )
-      newErrors.temperature = "Valid Temperature (-10 to 60) is required";
+      newErrors.temperature = "Valid Temperature (0 to 60) is required";
     if (!formData.humidity || formData.humidity < 0 || formData.humidity > 100)
       newErrors.humidity = "Valid Humidity (0-100) is required";
     if (!formData.ph || formData.ph < 0 || formData.ph > 14)
@@ -147,7 +147,7 @@ const CropForm = ({ onResult, onLoading, onError }) => {
           {
             label: "Temperature",
             name: "temperature",
-            min: -10,
+            min: 0,
             max: 60,
             step: 0.1,
             suffix: "°C",

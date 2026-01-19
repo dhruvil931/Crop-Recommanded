@@ -4,13 +4,15 @@ const ResultCard = ({ result }) => {
   if (!result) return null;
 
   const {
-    recommendedCrop,
-    probability,
-    riskLevel,
-    explanations,
-    alternatives,
+    // recommendedCrop,
+    // probability,
+    // riskLevel,
+    // explanations,
+    // alternatives,
+    confidence_percent,
+    recommended_crop,
   } = result;
-  const percentage = (probability * 100).toFixed(1);
+  const percentage = (confidence_percent * 100).toFixed(1);
 
   const getRiskColors = (level) => {
     switch (level) {
@@ -45,7 +47,7 @@ const ResultCard = ({ result }) => {
 
         <div
           className={`px-5 py-3 rounded-2xl flex flex-col items-end border ${getRiskColors(
-            riskLevel
+            riskLevel,
           )}`}
         >
           <span className="text-xs font-bold uppercase opacity-70 tracking-wider">
