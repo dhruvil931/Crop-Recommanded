@@ -3,15 +3,7 @@ import React from "react";
 const ResultCard = ({ result }) => {
   if (!result) return null;
 
-  const {
-    // recommendedCrop,
-    // probability,
-    // riskLevel,
-    // explanations,
-    // alternatives,
-    confidence_percent,
-    recommended_crop,
-  } = result;
+  const { recommended_crop, confidence_percent } = result;
   const percentage = (confidence_percent * 100).toFixed(1);
 
   const getRiskColors = (level) => {
@@ -40,7 +32,7 @@ const ResultCard = ({ result }) => {
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-6">
         <div className="relative">
           <span className="text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-green-700 to-emerald-600 capitalize">
-            {recommendedCrop}
+            {recommended_crop}
           </span>
           <div className="absolute -bottom-2 left-0 w-full h-2 bg-green-200/50 rounded-full -skew-x-12"></div>
         </div>
