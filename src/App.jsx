@@ -7,6 +7,7 @@ import About from "./pages/About";
 import Profile from "./pages/Profile";
 import Recommend from "./pages/Recommend";
 import ForgotPassword from "./pages/ForgotPassword";
+import History from "./pages/History";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <Route path="/profile" element={<Profile />} />
       <Route path="/recommend" element={<Recommend />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
+      <Route path="/history" element={<History />} />
     </Routes>
   );
 }
