@@ -10,28 +10,34 @@ const Navbar = () => {
   const checkLoginStatus = async () => {
     const token = localStorage.getItem("token");
 
-    if (token) {
-      try {
-        // Verify token and get user details from backend
-        const response = await fetch("http://localhost:8080/api/auth/me", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+    if (!token) {
+      setIsLoggedIn(false);
+      return;
+    }
 
-        if (response.ok) {
-          setIsLoggedIn(true);
-          // Optionally store user in state if needed for profile name display
-        } else {
-          // Token invalid
-          localStorage.removeItem("token");
-          setIsLoggedIn(false);
-        }
-      } catch (error) {
-        console.error("Auth check failed", error);
+    // ⚠️ Cache result to avoid repeated calls
+    const cachedAuth = sessionStorage.getItem("isLoggedIn");
+    if (cachedAuth === "true") {
+      setIsLoggedIn(true);
+      return;
+    }
+
+    try {
+      const response = await fetch("http://localhost:8080/api/auth/me", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (response.ok) {
+        setIsLoggedIn(true);
+        sessionStorage.setItem("isLoggedIn", "true");
+      } else {
+        localStorage.removeItem("token");
+        sessionStorage.removeItem("isLoggedIn");
         setIsLoggedIn(false);
       }
-    } else {
+    } catch {
       setIsLoggedIn(false);
     }
   };
@@ -49,7 +55,7 @@ const Navbar = () => {
       window.removeEventListener("auth-change", handleAuthChange);
       window.removeEventListener("storage", handleAuthChange);
     };
-  }, [location]);
+  }, []);
 
   const navLinks = [
     { name: "Home", path: "/" },
