@@ -16,11 +16,11 @@ const Navbar = () => {
     }
 
     // ⚠️ Cache result to avoid repeated calls
-    const cachedAuth = sessionStorage.getItem("isLoggedIn");
-    if (cachedAuth === "true") {
-      setIsLoggedIn(true);
-      return;
-    }
+    // const cachedAuth = sessionStorage.getItem("isLoggedIn");
+    // if (cachedAuth === "true") {
+    //   setIsLoggedIn(true);
+    //   return;
+    // }
 
     try {
       const response = await fetch("http://localhost:8080/api/auth/me", {
@@ -31,10 +31,8 @@ const Navbar = () => {
 
       if (response.ok) {
         setIsLoggedIn(true);
-        sessionStorage.setItem("isLoggedIn", "true");
       } else {
         localStorage.removeItem("token");
-        sessionStorage.removeItem("isLoggedIn");
         setIsLoggedIn(false);
       }
     } catch {
