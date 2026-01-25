@@ -105,11 +105,14 @@ const History = () => {
                           {new Date(item.timestamp).toLocaleTimeString()}
                         </td>
                         <td className="px-6 py-4 font-bold text-green-700">
-                          {item.recommendedCrop}
+                          {item.crop}
                         </td>
-                        <td className="px-6 py-4">{item.nitrogen}</td>
-                        <td className="px-6 py-4">{item.phosphorus}</td>
-                        <td className="px-6 py-4">{item.potassium}</td>
+                        <td className="px-6 py-4 font-bold text-green-700">
+                          {item.probability}
+                        </td>
+                        <td className="px-6 py-4">{item.n}</td>
+                        <td className="px-6 py-4">{item.p}</td>
+                        <td className="px-6 py-4">{item.k}</td>
                         <td className="px-6 py-4">
                           {item.temperature.toFixed(1)}°C
                         </td>
