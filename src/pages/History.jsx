@@ -48,7 +48,7 @@ const History = () => {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-gradient-to-br from-green-50 via-green-100 to-emerald-200 font-sans p-8">
+      <div className="min-h-screen bg-linear-to-br from-green-50 via-green-100 to-emerald-200 font-sans p-8">
         <div className="max-w-7xl mx-auto">
           <header className="mb-12 text-center">
             <h1 className="text-4xl font-extrabold text-[#1b5e20] tracking-tight mb-2">
