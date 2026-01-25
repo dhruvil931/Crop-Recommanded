@@ -84,7 +84,7 @@ const OtpVerification = () => {
               "url('https://images.unsplash.com/photo-1625246333195-78d9c38ad449?q=80&w=2070&auto=format&fit=crop')",
           }}
         ></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60"></div>
+        <div className="absolute inset-0 bg-linear-to-b from-black/30 via-transparent to-black/60"></div>
 
         <div className="relative z-10 flex flex-col justify-between p-12 text-white h-full w-full">
           <div className="flex items-center gap-3">
@@ -114,7 +114,7 @@ const OtpVerification = () => {
           {error && (
             <div className="bg-red-50 text-red-600 p-4 rounded-xl mb-6 text-sm flex items-center gap-3 border border-red-100">
               <svg
-                className="w-5 h-5 flex-shrink-0"
+                className="w-5 h-5 shrink-0"
                 fill="currentColor"
                 viewBox="0 0 20 20"
               >
@@ -131,7 +131,7 @@ const OtpVerification = () => {
           {successMessage && (
             <div className="bg-green-50 text-green-600 p-4 rounded-xl mb-6 text-sm flex items-center gap-3 border border-green-100">
               <svg
-                className="w-5 h-5 flex-shrink-0"
+                className="w-5 h-5 shrink-0"
                 fill="currentColor"
                 viewBox="0 0 20 20"
               >

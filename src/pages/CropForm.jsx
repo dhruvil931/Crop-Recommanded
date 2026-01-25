@@ -104,7 +104,7 @@ const CropForm = ({ onResult, onLoading, onError }) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-white/80 backdrop-blur-md p-8 md:p-10 rounded-[2rem] shadow-xl border border-white/60 relative overflow-hidden"
+      className="bg-white/80 backdrop-blur-md p-8 md:p-10 rounded-4xl shadow-xl border border-white/60 relative overflow-hidden"
     >
       {/* Decorative background element */}
       <div className="absolute top-0 right-0 w-64 h-64 bg-green-50 rounded-full blur-3xl -z-10 translate-x-1/2 -translate-y-1/2"></div>
@@ -272,7 +272,7 @@ const CropForm = ({ onResult, onLoading, onError }) => {
         </button>
         <button
           type="submit"
-          className="flex-[2] py-4 px-6 bg-gradient-to-r from-[#2e7d32] to-[#1b5e20] text-white font-bold rounded-xl text-lg shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none disabled:transform-none flex items-center justify-center gap-2"
+          className="flex-2 py-4 px-6 bg-linear-to-r from-[#2e7d32] to-[#1b5e20] text-white font-bold rounded-xl text-lg shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none disabled:transform-none flex items-center justify-center gap-2"
           disabled={
             Object.keys(errors).length > 0 &&
             Object.values(errors).some((x) => x)
