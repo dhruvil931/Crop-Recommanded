@@ -18,7 +18,7 @@ const History = () => {
       }
 
       try {
-        const response = await fetch("http://localhost:8080/api/history", {
+        const response = await fetch("http://localhost:8080/api/crop/history", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -85,6 +85,7 @@ const History = () => {
                     <tr>
                       <th className="px-6 py-4">Date</th>
                       <th className="px-6 py-4">Crop</th>
+                      <th className="px-6 py-4">Probability</th>
                       <th className="px-6 py-4">N</th>
                       <th className="px-6 py-4">P</th>
                       <th className="px-6 py-4">K</th>
@@ -101,8 +102,11 @@ const History = () => {
                         className="hover:bg-green-50/50 transition-colors"
                       >
                         <td className="px-6 py-4 font-medium">
-                          {new Date(item.timestamp).toLocaleDateString()}{" "}
-                          {new Date(item.timestamp).toLocaleTimeString()}
+                          {item.date
+                            ?.split("T")[0]
+                            ?.split("-")
+                            .reverse()
+                            .join("-")}
                         </td>
                         <td className="px-6 py-4 font-bold text-green-700">
                           {item.crop}

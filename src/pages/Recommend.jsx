@@ -15,13 +15,13 @@ const Recommend = () => {
   useEffect(() => {
     const token = localStorage.getItem("token");
     const storedUser = localStorage.getItem("user");
-    // if (!token) {
-    //   navigate("/login");
-    // } else {
-    //   if (storedUser) {
-    //     setUser(JSON.parse(storedUser));
-    //   }
-    // }
+    if (!token) {
+      navigate("/login");
+    } else {
+      if (storedUser) {
+        setUser(JSON.parse(storedUser));
+      }
+    }
   }, [navigate]);
 
   const handleLogout = () => {
@@ -33,9 +33,9 @@ const Recommend = () => {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-gradient-to-br from-green-50 via-green-100 to-emerald-200 font-sans relative overflow-hidden">
+      <div className="min-h-screen bg-linear-to-br from-green-50 via-green-100 to-emerald-200 font-sans relative overflow-hidden">
         {/* Background Decorations */}
-        <div className="absolute top-0 left-0 w-full h-96 bg-gradient-to-b from-green-600/20 to-transparent pointer-events-none" />
+        <div className="absolute top-0 left-0 w-full h-96 bg-linear-to-b from-green-600/20 to-transparent pointer-events-none" />
         <div className="absolute -top-20 -right-20 w-96 h-96 bg-green-400/20 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute top-40 -left-20 w-72 h-72 bg-emerald-400/20 rounded-full blur-3xl pointer-events-none" />
 
@@ -111,7 +111,7 @@ const Recommend = () => {
                 <div className="mt-8 bg-red-50/90 backdrop-blur-sm text-red-700 p-6 rounded-2xl border border-red-200 shadow-sm flex items-start gap-3">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6 flex-shrink-0"
+                    className="h-6 w-6 shrink-0"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"

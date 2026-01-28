@@ -79,7 +79,7 @@ const Navbar = () => {
         <div className="flex justify-between items-center h-16 box-border">
           {/* Logo Section */}
           <div
-            className="flex-shrink-0 flex items-center cursor-pointer select-none"
+            className="shrink-0 flex items-center cursor-pointer select-none"
             onClick={() => navigate("/")}
           >
             {/* SVG with explicit sizing and color (Green-700 equivalent) */}
@@ -131,7 +131,7 @@ const Navbar = () => {
                   className="flex items-center space-x-2 cursor-pointer group p-1.5 pr-3 rounded-full hover:bg-green-50 transition-all duration-300 border border-transparent hover:border-green-100 box-border"
                   onClick={() => navigate("/profile")}
                 >
-                  <div className="h-8 w-8 rounded-full bg-gradient-to-br from-green-100 to-green-200 flex items-center justify-center text-green-600 group-hover:bg-green-200 transition-colors shadow-sm">
+                  <div className="h-8 w-8 rounded-full bg-linear-to-br from-green-100 to-green-200 flex items-center justify-center text-green-600 group-hover:bg-green-200 transition-colors shadow-sm">
                     <svg
                       className="h-5 w-5"
                       fill="none"

@@ -68,8 +68,6 @@ const CropForm = ({ onResult, onLoading, onError }) => {
         rainfall: parseFloat(formData.rainfall),
       };
 
-      console.log(data);
-
       const result = await getRecommendation(data);
       onResult(result);
     } catch (err) {
