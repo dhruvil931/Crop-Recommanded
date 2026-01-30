@@ -64,12 +64,12 @@ const Profile = () => {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen pt-20 pb-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-50 via-white to-green-50 font-sans">
+      <div className="min-h-screen pt-20 pb-12 px-4 sm:px-6 lg:px-8 bg-linear-to-br from-gray-50 via-white to-green-50 font-sans">
         <style>{styles}</style>
 
         <div className="max-w-4xl mx-auto animate-fade-in-up">
           {/* Header */}
-          <div className="bg-gradient-to-r from-[#1a4d2e] to-[#2e7d32] rounded-t-3xl p-10 text-white shadow-2xl">
+          <div className="bg-linear-to-r from-[#1a4d2e] to-[#2e7d32] rounded-t-3xl p-10 text-white shadow-2xl">
             <div className="flex flex-col md:flex-row items-center gap-10">
               <div className="w-32 h-32 bg-white rounded-full flex items-center justify-center text-[#1a4d2e] text-5xl font-bold animate-scale-in shadow-lg ring-4 ring-white/30">
                 {user.name?.charAt(0).toUpperCase()}

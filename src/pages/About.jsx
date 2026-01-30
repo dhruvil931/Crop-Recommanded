@@ -30,7 +30,7 @@ const About = () => {
               </span>
               <h1 className="text-5xl md:text-7xl font-serif font-bold text-white mb-6 leading-tight">
                 Cultivating a <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-600">
+                <span className="text-transparent bg-clip-text bg-linear-to-r from-green-400 to-emerald-600">
                   Smarter Future
                 </span>
               </h1>
@@ -76,7 +76,7 @@ const About = () => {
             </div>
 
             {/* The Solution Card - Featured */}
-            <div className="md:col-span-2 bg-gradient-to-br from-green-900 to-emerald-800 p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 text-white relative overflow-hidden group h-full">
+            <div className="md:col-span-2 bg-linear-to-br from-green-900 to-emerald-800 p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 text-white relative overflow-hidden group h-full">
               {/* Background Pattern */}
               <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-white/10 transition-colors"></div>
 
@@ -170,7 +170,7 @@ const About = () => {
             {/* Disclaimer Card */}
             <div className="lg:col-span-2 bg-orange-50 p-8 rounded-3xl border border-orange-100 h-full">
               <div className="flex items-start gap-4">
-                <div className="flex-shrink-0">
+                <div className="shrink-0">
                   <svg
                     className="h-6 w-6 text-orange-400"
                     fill="none"
@@ -335,7 +335,7 @@ const About = () => {
                 >
                   <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 group text-center h-full flex flex-col items-center">
                     <div
-                      className={`w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br ${value.color} flex items-center justify-center mb-6 shadow-md group-hover:scale-110 transition-transform`}
+                      className={`w-16 h-16 mx-auto rounded-2xl bg-linear-to-br ${value.color} flex items-center justify-center mb-6 shadow-md group-hover:scale-110 transition-transform`}
                     >
                       {value.icon}
                     </div>
@@ -549,7 +549,7 @@ const About = () => {
                         </svg>
                       ))}
                     </div>
-                    <p className="text-gray-600 italic mb-6 flex-grow">
+                    <p className="text-gray-600 italic mb-6 grow">
                       "{item.quote}"
                     </p>
                     <div>
@@ -566,7 +566,7 @@ const About = () => {
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 bg-gradient-to-br from-green-900 to-emerald-800 relative overflow-hidden">
+        <section className="py-20 bg-linear-to-br from-green-900 to-emerald-800 relative overflow-hidden">
           <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
           <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
             <RevealOnScroll>

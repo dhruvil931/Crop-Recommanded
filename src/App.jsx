@@ -8,6 +8,8 @@ import Profile from "./pages/Profile";
 import Recommend from "./pages/Recommend";
 import ForgotPassword from "./pages/ForgotPassword";
 import History from "./pages/History";
+import OtpVerification from "./pages/OtpVerification";
+import ResetPassword from "./pages/ResetPassword";
 
 function App() {
   return (
@@ -18,8 +20,10 @@ function App() {
       <Route path="/about" element={<About />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/recommend" element={<Recommend />} />
-      <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/history" element={<History />} />
+      <Route path="/forgot-password" element={<ForgotPassword />} />
+      <Route path="/otp-verification" element={<OtpVerification />} />
+      <Route path="/reset-password" element={<ResetPassword />} />
     </Routes>
   );
 }

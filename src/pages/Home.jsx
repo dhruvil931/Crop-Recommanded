@@ -78,7 +78,7 @@ const Home = () => {
               className="w-full h-full object-cover"
             />
             {/* Dark Gradient Overlay for Readability */}
-            <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70"></div>
+            <div className="absolute inset-0 bg-linear-to-b from-black/70 via-black/50 to-black/70"></div>
           </div>
 
           {/* Centered Content */}
@@ -188,7 +188,7 @@ const Home = () => {
         </section>
 
         {/* Feature Section */}
-        <section className="py-24 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
+        <section className="py-24 bg-linear-to-b from-gray-50 to-white relative overflow-hidden">
           {/* Decorative background elements */}
           <div className="absolute top-0 left-0 w-full h-full overflow-hidden opacity-30 pointer-events-none">
             <div className="absolute -top-24 -left-24 w-96 h-96 bg-green-100 rounded-full blur-3xl"></div>
@@ -218,7 +218,7 @@ const Home = () => {
               {/* Feature 1 */}
               <RevealOnScroll delay={200}>
                 <div className="group bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-green-100 relative overflow-hidden h-full">
-                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-green-400 to-green-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+                  <div className="absolute top-0 left-0 w-full h-1 bg-linear-to-r from-green-400 to-green-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
 
                   <div className="flex items-center justify-center h-16 w-16 rounded-2xl bg-green-50 text-green-600 group-hover:bg-green-600 group-hover:text-white transition-colors duration-300 mb-6 shadow-sm group-hover:shadow-green-200">
                     <svg
@@ -248,7 +248,7 @@ const Home = () => {
               {/* Feature 2 */}
               <RevealOnScroll delay={400}>
                 <div className="group bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-green-100 relative overflow-hidden h-full">
-                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-green-400 to-green-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+                  <div className="absolute top-0 left-0 w-full h-1 bg-linear-to-r from-green-400 to-green-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
 
                   <div className="flex items-center justify-center h-16 w-16 rounded-2xl bg-green-50 text-green-600 group-hover:bg-green-600 group-hover:text-white transition-colors duration-300 mb-6 shadow-sm group-hover:shadow-green-200">
                     <svg
@@ -279,7 +279,7 @@ const Home = () => {
               {/* Feature 3 */}
               <RevealOnScroll delay={600}>
                 <div className="group bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-green-100 relative overflow-hidden h-full">
-                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-green-400 to-green-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+                  <div className="absolute top-0 left-0 w-full h-1 bg-linear-to-r from-green-400 to-green-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
 
                   <div className="flex items-center justify-center h-16 w-16 rounded-2xl bg-green-50 text-green-600 group-hover:bg-green-600 group-hover:text-white transition-colors duration-300 mb-6 shadow-sm group-hover:shadow-green-200">
                     <svg
@@ -311,7 +311,7 @@ const Home = () => {
         </section>
 
         {/* Infinite Slider Section - Relocated & Enriched */}
-        <section className="py-16 bg-gradient-to-r from-gray-50 to-white overflow-hidden border-y border-gray-100 relative">
+        <section className="py-16 bg-linear-to-r from-gray-50 to-white overflow-hidden border-y border-gray-100 relative">
           <style>{`
             @keyframes scroll {
                 0% { transform: translateX(0); }
@@ -345,7 +345,7 @@ const Home = () => {
               {[...CROPS_DATA, ...CROPS_DATA].map((crop, index) => (
                 <div
                   key={`crop-${index}`}
-                  className="flex flex-col gap-3 min-w-[260px] p-6 bg-white rounded-2xl shadow-sm border border-gray-100 hover:border-green-200 hover:shadow-lg transition-all duration-300 group cursor-default"
+                  className="flex flex-col gap-3 min-w-65 p-6 bg-white rounded-2xl shadow-sm border border-gray-100 hover:border-green-200 hover:shadow-lg transition-all duration-300 group cursor-default"
                 >
                   <div className="flex items-center gap-4 mb-2">
                     <div>
@@ -393,7 +393,7 @@ const Home = () => {
 
             <div className="relative">
               {/* Connector Line (Desktop) */}
-              <div className="hidden md:block absolute top-[60px] left-[16%] right-[16%] h-1 bg-gradient-to-r from-green-200 via-green-400 to-green-200 rounded-full z-0 opacity-40"></div>
+              <div className="hidden md:block absolute top-15 left-[16%] right-[16%] h-1 bg-linear-to-r from-green-200 via-green-400 to-green-200 rounded-full z-0 opacity-40"></div>
 
               <div className="relative z-10 grid gap-12 md:grid-cols-3">
                 {/* Step 1 */}

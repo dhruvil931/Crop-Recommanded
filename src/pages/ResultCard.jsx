@@ -26,7 +26,7 @@ const ResultCard = ({ result }) => {
 
       {/* Header */}
       <h2 className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-8 flex items-center gap-3">
-        <span className="w-12 h-0.5 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full" />
+        <span className="w-12 h-0.5 bg-linear-to-r from-green-500 to-emerald-500 rounded-full" />
         Recommendation Result
       </h2>
 
@@ -34,7 +34,7 @@ const ResultCard = ({ result }) => {
       <div className="flex flex-col items-center text-center">
         {/* Crop name */}
         <div className="relative mb-8">
-          <h1 className="text-5xl md:text-6xl font-extrabold capitalize text-transparent bg-clip-text bg-gradient-to-r from-green-700 to-emerald-600">
+          <h1 className="text-5xl md:text-6xl font-extrabold capitalize text-transparent bg-clip-text bg-linear-to-r from-green-700 to-emerald-600">
             {crop}
           </h1>
           <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 w-4/5 h-2 bg-green-200/60 rounded-full -skew-x-12" />
@@ -54,7 +54,7 @@ const ResultCard = ({ result }) => {
         <div className="w-full max-w-md">
           <div className="h-3 w-full bg-gray-200 rounded-full overflow-hidden">
             <div
-              className={`h-full bg-gradient-to-r ${getConfidenceColor()} rounded-full transition-all duration-700 ease-out`}
+              className={`h-full bg-linear-to-r ${getConfidenceColor()} rounded-full transition-all duration-700 ease-out`}
               style={{ width: `${percentage}%` }}
             />
           </div>

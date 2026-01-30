@@ -8,14 +8,14 @@ const ForgotPassword = () => {
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    setEmail(e.target.value);
+    setEmail(e.target.value.trim().toLowerCase());
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
     try {
-      await axios.post("http://localhost:8080/api/auth/forgot-password", {
+      await axios.post("http://localhost:8080/api/otp/forgot-password", {
         email,
       });
       navigate("/otp-verification", { state: { email } });
@@ -26,10 +26,12 @@ const ForgotPassword = () => {
           state: { message: "Email not registered. Please sign up." },
         });
       } else {
-        setError(
-          err.response?.data?.message ||
-            "Something went wrong. Please try again.",
-        );
+        const msg =
+          typeof err.response?.data === "string"
+            ? err.response.data
+            : err.response?.data?.message;
+
+        setError(msg || "Something went wrong.");
       }
     }
   };

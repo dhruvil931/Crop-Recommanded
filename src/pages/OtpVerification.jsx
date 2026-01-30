@@ -25,15 +25,15 @@ const OtpVerification = () => {
     setError("");
     setSuccessMessage("");
     try {
-      await axios.post("http://localhost:8080/api/auth/verify-otp", {
+      await axios.post("http://localhost:8080/api/otp/verify-otp", {
         email,
         otp,
       });
       // If the OTP is valid, the backend returns a success status
       setSuccessMessage("OTP verified successfully! Redirecting...");
       setTimeout(() => {
-        navigate("/login");
-      }, 1000);
+        navigate("/reset-password", { state: { email } });
+      }, 800);
     } catch (err) {
       setError(
         err.response?.data?.message ||
@@ -46,7 +46,7 @@ const OtpVerification = () => {
     setError("");
     setSuccessMessage("");
     try {
-      await axios.post("http://localhost:8080/api/auth/forgot-password", {
+      await axios.post("http://localhost:8080/api/otp/forgot-password", {
         email,
       });
       setSuccessMessage("A new OTP has been sent to your email.");
@@ -151,7 +151,9 @@ const OtpVerification = () => {
                 One-Time Password
               </label>
               <input
-                type="text"
+                type="tel"
+                inputMode="numeric"
+                pattern="[0-9]{6}"
                 name="otp"
                 value={otp}
                 onChange={handleChange}
